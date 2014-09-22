@@ -1,7 +1,7 @@
 {
   "name": "is-number",
-  "description": "Is the value a number?",
-  "version": "0.1.0",
+  "description": "Is the value a number? Has extensive tests.",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/is-number",
   "author": {
     "name": "Jon Schlinkert",
@@ -33,12 +33,19 @@
     "mocha": "*"
   },
   "keywords": [
-    "docs",
-    "documentation",
-    "generate",
-    "generator",
-    "markdown",
-    "templates",
-    "verb"
+    "coerce",
+    "coercion",
+    "integer",
+    "is",
+    "istype",
+    "javascript",
+    "math",
+    "number",
+    "test",
+    "type",
+    "typeof",
+    "util",
+    "utility",
+    "value"
   ]
 }

@@ -70,18 +70,7 @@ var shouldPass = [  0,
   '5e3'
 ];
 
-describe('is a number', function () {
-  shouldPass.forEach(function (num) {
-    it('"' + num + '" should be a number', function () {
-      assert.equal(isNumber(num), true);
-    });
-  });
-});
-
-
 var shouldFail = [
-  Infinity, // fails
-  'Infinity', // fails
   '3abc',
   'abc',
   'abc3',
@@ -90,12 +79,47 @@ var shouldFail = [
   [1, 2, 3],
   function () {},
   new Buffer('abc'),
-  null, // fails!
+  null,
   undefined,
   {abc: 'abc'},
   {},
-  [] // fails!
+  []
 ];
+
+
+describe('is a number', function () {
+  shouldPass.forEach(function (num) {
+    it('"' + num + '" should be a number', function () {
+      assert.equal(isNumber(num), true);
+    });
+  });
+
+  assert.equal(isNumber(Infinity), true);
+  assert.equal(isNumber('Infinity'), true);
+});
+
+
+describe('is a finite number:', function () {
+  function isNum(val) {
+    return isNumber(val) && isFinite(val);
+  }
+
+  assert.equal(isNum(Infinity), false);
+  assert.equal(isNum('Infinity'), false);
+
+  shouldPass.forEach(function (num) {
+    it('"' + num + '" should be a number', function () {
+      assert.equal(isNum(num), true);
+    });
+  });
+
+  shouldFail.forEach(function (num) {
+    it('"' + num + '" should be a number', function () {
+      assert.equal(isNum(num), false);
+    });
+  });
+});
+
 
 describe('is not a number', function () {
   shouldFail.forEach(function (num) {

@@ -7,6 +7,6 @@
 
 'use strict';
 
-module.exports = function isNumber(n, strict) {
-  return !!(+n+1);
+module.exports = function isNumber(n) {
+  return !!(+n) || n === 0 || n === '0';
 };
