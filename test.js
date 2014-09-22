@@ -5,29 +5,27 @@
  * Licensed under the MIT License
  */
 
-// 'use strict';
+'use strict';
 
 var assert = require('assert');
-// var isNumber = require('./');
-var _ = require('lodash');
+var isNumber = require('./');
 
-var pass = [
-  0,
-  '0',
-  012,
-  '012',
-  1,
-  '1',
-  1.1,
-  '1.1',
+
+var shouldPass = [  0,
+  5e3,
   -1.1,
-  '-1.1',
+  0,
+
+  // 012, Octal literal not allowed in strict mode
+  parseInt('012'),
+  parseFloat('012'),
+  0xff,
+  1,
+  1.1,
   10,
-  '10',
   10.10,
-  '10.10',
   100,
-  '100',
+
   Math.abs(1),
   Math.acos(1),
   Math.asin(1),
@@ -55,77 +53,54 @@ var pass = [
   Math.SQRT1_2,
   Math.SQRT2,
   Math.tan(1),
+
   Number.MAX_VALUE,
   Number.MIN_VALUE,
-  5e3,
-  '5e3',
-  0xff,
+
+  // these fail in strict mode
+  '-1.1',
+  '0',
+  '012',
   '0xff',
-  Infinity,
-  'Infinity'
+  '1',
+  '1.1',
+  '10',
+  '10.10',
+  '100',
+  '5e3'
 ];
-
-
-var fail = [
-  '3abc',
-  'abc',
-  'abc3',
-  [1, 2, 3],
-  function () {},
-  new Buffer('abc'),
-  null,
-  'null',
-  'undefined',
-  undefined,
-  {abc: 'abc'},
-  {}
-];
-
-var oddities = [
-  new Array(), //=> `true`
-  new Array(0), //=> `true`
-  new Array(1), //=> `true`
-];
-
-// function isNumber(n) {
-//   if (parseInt(n) === 0) {
-//     return true;
-//   }
-//   return !!(+n/1);
-// }
-
-// function isNumber(n) {
-//   return !isNaN(parseFloat(n)) && isFinite(n);
-// }w
-function isNumber(n, finite) {
-  // return (!!n && !!n+1) && !!(+n+1/1);
-  // return n != null && !!(+n+1/1);
-  // return n != null && ((finite ? isFinite(n) : !isNaN(n)) && !!(+n+1/1));
-  // return n != null && isFinite(n) && !!(+n+1/1);
-  return n != null && !!(+n+1/1);
-}
 
 describe('is a number', function () {
-  pass.forEach(function (num) {
+  shouldPass.forEach(function (num) {
     it('"' + num + '" should be a number', function () {
       assert.equal(isNumber(num), true);
     });
   });
 });
 
+
+var shouldFail = [
+  Infinity, // fails
+  'Infinity', // fails
+  '3abc',
+  'abc',
+  'abc3',
+  'null',
+  'undefined',
+  [1, 2, 3],
+  function () {},
+  new Buffer('abc'),
+  null, // fails!
+  undefined,
+  {abc: 'abc'},
+  {},
+  [] // fails!
+];
+
 describe('is not a number', function () {
-  fail.forEach(function (num) {
+  shouldFail.forEach(function (num) {
     it('"' + num + '" should not be a number', function () {
       assert.equal(isNumber(num), false);
     });
   });
 });
-
-console.log(Math.E)
-
-
-// function foo() {
-//   return [].splice.call(arguments, 1)
-// }
-
-// console.log(foo('a', 'b',))
