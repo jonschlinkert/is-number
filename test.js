@@ -12,21 +12,38 @@ var isNumber = require('./');
 
 
 var shouldPass = [
-  0,
-  5e3,
-  -1.1,
-  0,
-
-  // 012, Octal literal not allowed in strict mode
-  parseInt('012'),
-  parseFloat('012'),
   0xff,
+  5e3,
+  0,
+  -1.1,
+  37,
+  3.14,
+
   1,
   1.1,
   10,
   10.10,
   100,
+  -100,
 
+  '-1.1',
+  '0',
+  '012',
+  '0xff',
+  '1',
+  '1.1',
+  '10',
+  '10.10',
+  '100',
+  '5e3',
+
+  Math.LN2,
+  Number(1),
+  new Number(1),
+
+  // 012, Octal literal not allowed in strict mode
+  parseInt('012'),
+  parseFloat('012'),
   Math.abs(1),
   Math.acos(1),
   Math.asin(1),
@@ -56,19 +73,7 @@ var shouldPass = [
   Math.tan(1),
 
   Number.MAX_VALUE,
-  Number.MIN_VALUE,
-
-  // these fail in strict mode
-  '-1.1',
-  '0',
-  '012',
-  '0xff',
-  '1',
-  '1.1',
-  '10',
-  '10.10',
-  '100',
-  '5e3'
+  Number.MIN_VALUE
 ];
 
 var shouldFail = [
@@ -78,49 +83,28 @@ var shouldFail = [
   'null',
   'undefined',
   [1, 2, 3],
+  [1],
+  [],
   function () {},
+  Infinity,
+  NaN,
+  new Array('abc'),
+  new Array(0),
+  new Array(2),
   new Buffer('abc'),
   null,
   undefined,
   {abc: 'abc'},
   {},
-  []
 ];
-
 
 describe('is a number', function () {
   shouldPass.forEach(function (num) {
-    it('"' + num + '" should be a number', function () {
+    it('"' + JSON.stringify(num) + '" should be a number', function () {
       assert.equal(isNumber(num), true);
     });
   });
-
-  assert.equal(isNumber(Infinity), true);
-  assert.equal(isNumber('Infinity'), true);
 });
-
-
-describe('is a finite number:', function () {
-  function isNum(val) {
-    return isNumber(val) && isFinite(val);
-  }
-
-  assert.equal(isNum(Infinity), false);
-  assert.equal(isNum('Infinity'), false);
-
-  shouldPass.forEach(function (num) {
-    it('"' + num + '" should be a number', function () {
-      assert.equal(isNum(num), true);
-    });
-  });
-
-  shouldFail.forEach(function (num) {
-    it('"' + num + '" should be a number', function () {
-      assert.equal(isNum(num), false);
-    });
-  });
-});
-
 
 describe('is not a number', function () {
   shouldFail.forEach(function (num) {
