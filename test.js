@@ -1,7 +1,7 @@
 /*!
  * is-number <https://github.com/jonschlinkert/is-number>
  *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert.
  * Licensed under the MIT License
  */
 
@@ -11,7 +11,8 @@ var assert = require('assert');
 var isNumber = require('./');
 
 
-var shouldPass = [  0,
+var shouldPass = [
+  0,
   5e3,
   -1.1,
   0,
@@ -123,7 +124,7 @@ describe('is a finite number:', function () {
 
 describe('is not a number', function () {
   shouldFail.forEach(function (num) {
-    it('"' + num + '" should not be a number', function () {
+    it('"' + JSON.stringify(num) + '" should not be a number', function () {
       assert.equal(isNumber(num), false);
     });
   });
