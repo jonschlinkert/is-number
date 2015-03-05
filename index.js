@@ -2,7 +2,7 @@
  * is-number <https://github.com/jonschlinkert/is-number>
  *
  * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT License
+ * Licensed under the MIT License.
  */
 
 'use strict';
