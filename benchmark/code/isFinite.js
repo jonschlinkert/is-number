@@ -11,5 +11,5 @@ module.exports = function(arr) {
 };
 
 function isNumber(n) {
-  return !Array.isArray(n) && (n - parseFloat(n) + 1) >= 0;
+  return (!!(+n) && !Array.isArray(n)) && isFinite(n) || n === '0'|| n === 0;
 }

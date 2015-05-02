@@ -1,10 +1,13 @@
 'use strict';
 
+var isNumber = require('../..');
+
 module.exports = function(arr) {
-  var len = arr.length, isNum;
+  var len = arr.length;
+  var res = [];
+
   while (len--) {
-    var n = arr[len];
-    isNum = (!!(+n) && !Array.isArray(n)) && isFinite(n) || n === '0'|| n === 0;
+    res.push(isNumber(arr[len]));
   }
-  return isNum;
+  return res;
 };

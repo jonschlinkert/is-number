@@ -1,0 +1,3 @@
+current.js x 95,791 ops/sec ±0.61% (95 runs sampled)
+isFinite.js x 88,418 ops/sec ±0.56% (100 runs sampled)
+parseFloat.js x 72,222 ops/sec ±1.10% (94 runs sampled)

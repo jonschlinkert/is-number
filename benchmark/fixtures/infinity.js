@@ -1,1 +1,1 @@
-module.exports = [Infinity];
+module.exports = [[Infinity]];

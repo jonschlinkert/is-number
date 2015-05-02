@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = [[
   0xff,
   5e3,
   0,
@@ -89,4 +89,4 @@ module.exports = [
   undefined,
   {abc: 'abc'},
   {},
-]
+]]
