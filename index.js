@@ -8,5 +8,6 @@
 'use strict';
 
 module.exports = function isNumber(n) {
-  return n !== null && !Array.isArray(n) && ((+n) - (+n) + 1) >= 0;
+  return n !== null && !Array.isArray(n)
+    && ((+n) - (+n) + 1) >= 0;
 };
