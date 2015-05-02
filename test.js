@@ -72,7 +72,14 @@ var shouldPass = [
   Math.tan(1),
 
   Number.MAX_VALUE,
-  Number.MIN_VALUE
+  Number.MIN_VALUE,
+
+  '0.0',
+  '0x0',
+  '0e+5',
+  '000',
+  '0.0e-5',
+  '0.0E5'
 ];
 
 var shouldFail = [
