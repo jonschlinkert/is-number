@@ -4,7 +4,7 @@ module.exports = function(arr) {
   var len = arr.length, isNum;
   while (len--) {
     var n = arr[len];
-    isNum = (!!(+n) && !Array.isArray(n)) && isFinite(n) || n === '0'|| n === 0;
+    isNum = !Array.isArray(n) && (n - parseFloat(n) + 1) >= 0;
   }
   return isNum;
 };
