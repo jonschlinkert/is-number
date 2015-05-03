@@ -9,10 +9,11 @@
 
 var typeOf = require('kind-of');
 
-module.exports = function isNumber(n) {
-  var type = typeOf(n);
+module.exports = function isNumber(num) {
+  var type = typeOf(num);
   if (type !== 'number' && type !== 'string') {
     return false;
   }
-  return (+n - +n + 1) >= 0 && n !== '';
+  var n = +num;
+  return (n - n + 1) >= 0 && num !== '';
 };
