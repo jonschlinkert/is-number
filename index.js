@@ -7,7 +7,12 @@
 
 'use strict';
 
+var typeOf = require('kind-of');
+
 module.exports = function isNumber(n) {
-  return n !== null && !Array.isArray(n)
-    && ((+n) - (+n) + 1) >= 0;
+  var type = typeOf(n);
+  if (type !== 'number' && type !== 'string') {
+    return false;
+  }
+  return (+n - +n + 1) >= 0 && n !== '';
 };
