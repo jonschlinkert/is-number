@@ -1,7 +1,7 @@
 {
   "name": "is-number",
   "description": "Returns true if the value is a number. comprehensive tests.",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "homepage": "https://github.com/jonschlinkert/is-number",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/is-number",
@@ -20,7 +20,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "kind-of": "^1.1.0"
+    "kind-of": "^3.0.2"
   },
   "devDependencies": {
     "benchmarked": "^0.1.3",
