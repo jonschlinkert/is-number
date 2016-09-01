@@ -40,6 +40,7 @@ var shouldPass = [
   '10.10',
   '100',
   '5e3',
+  '   56\r\n  ', // issue#3
 
   Math.LN2,
   Number(1),
@@ -109,6 +110,8 @@ var shouldPass = [
 ];
 
 var shouldFail = [
+  '   ', // issue#3
+  '\r\n\t', // issue#3
   '',
   '3a',
   'abc',
