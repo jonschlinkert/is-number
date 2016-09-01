@@ -10,17 +10,13 @@
 var typeOf = require('kind-of');
 
 module.exports = function isNumber(num) {
-  if (!num && num !== 0) return false;
-
   var type = typeOf(num);
-  if (type !== 'number' && type !== 'string') {
+
+  if (type === 'string') {
+    if (!num.trim()) return false;
+  } else if (type !== 'number') {
     return false;
   }
-  if (type === 'string') {
-    num = num.trim();
-    if (!num.length) return false;
-  }
 
-  var n = +num;
-  return (n - n + 1) >= 0;
+  return (num - num + 1) >= 0;
 };
