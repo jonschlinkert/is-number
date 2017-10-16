@@ -7,14 +7,12 @@
 
 'use strict';
 
-var typeOf = require('kind-of');
-
 module.exports = function isNumber(num) {
-  var type = typeOf(num);
+  var type = typeof num;
 
-  if (type === 'string') {
+  if (type === 'string' || num instanceof String) {
     if (!num.trim()) return false;
-  } else if (type !== 'number') {
+  } else if (type !== 'number' && !(num instanceof Number)) {
     return false;
   }
 
