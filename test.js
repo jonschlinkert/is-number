@@ -1,13 +1,13 @@
 /*!
  * is-number <https://github.com/jonschlinkert/is-number>
  *
- * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Copyright (c) 2014-2017, Jon Schlinkert.
  * Licensed under the MIT License.
  */
 
 'use strict';
 
-/* deps: mocha */
+require('mocha');
 var assert = require('assert');
 var isNumber = require('./');
 
@@ -122,9 +122,9 @@ var shouldFail = [
   +'abc',
   +/foo/,
   +[1, 2, 4],
-  +function () {},
   +function() {},
-  +function(){},
+  +function() {},
+  +function() {},
   +Infinity,
   +Math.sin,
   +NaN,
@@ -145,9 +145,9 @@ var shouldFail = [
   [],
   Boolean(true),
   false,
-  function () {},
   function() {},
-  function(){},
+  function() {},
+  function() {},
   Infinity,
   Math.sin,
   NaN,
@@ -169,17 +169,17 @@ var shouldFail = [
   {},
 ];
 
-describe('is a number', function () {
-  shouldPass.forEach(function (num) {
-    it('"' + JSON.stringify(num) + '" should be a number', function () {
+describe('is a number', function() {
+  shouldPass.forEach(function(num) {
+    it('"' + JSON.stringify(num) + '" should be a number', function() {
       assert.equal(isNumber(num), true);
     });
   });
 });
 
-describe('is not a number', function () {
-  shouldFail.forEach(function (num) {
-    it('"' + JSON.stringify(num) + '" should not be a number', function () {
+describe('is not a number', function() {
+  shouldFail.forEach(function(num) {
+    it('"' + JSON.stringify(num) + '" should not be a number', function() {
       assert.equal(isNumber(num), false);
     });
   });
