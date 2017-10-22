@@ -10,12 +10,5 @@
 module.exports = function isNumber(num) {
   var type = typeof num;
 
-  if (type === 'string' || num instanceof String) {
-    // an empty string would be coerced to true with the below logic
-    if (!num.trim()) return false;
-  } else if (type !== 'number' && !(num instanceof Number)) {
-    return false;
-  }
-
-  return (num - num + 1) >= 0;
-};
+  return (type === 'string' || type === 'number') && (num - num) === 0;
+}
