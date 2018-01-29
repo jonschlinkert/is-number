@@ -1,7 +1,7 @@
 /*!
  * is-number <https://github.com/jonschlinkert/is-number>
  *
- * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Copyright (c) 2014-2018, Jon Schlinkert.
  * Released under the MIT License.
  */
 
@@ -10,12 +10,15 @@
 module.exports = function isNumber(num) {
   var type = typeof num;
 
-  if (type === 'string' || num instanceof String) {
-    // an empty string would be coerced to true with the below logic
-    if (!num.trim()) return false;
-  } else if (type !== 'number' && !(num instanceof Number)) {
+  if (type === 'string') {
+    // both a non-empty whitespace string and an empty string will be coerced to 0
+    // with the logic below. By stripping whitespace we can guarantee a correct result.
+    if (num.trim() === '') {
+      return false;
+    }
+  } else if (type !== 'number') {
     return false;
   }
 
-  return (num - num + 1) >= 0;
+  return (num - num + 1) === 1;
 };
