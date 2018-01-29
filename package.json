@@ -6,7 +6,8 @@
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
     "Jon Schlinkert (http://twitter.com/jonschlinkert)",
-    "tunnckoCore (https://i.am.charlike.online)"
+    "Olsten Larck (https://i.am.charlike.online)",
+    "Rouven Weßling (www.rouvenwessling.de)"
   ],
   "repository": "jonschlinkert/is-number",
   "bugs": {
@@ -51,21 +52,19 @@
     "value"
   ],
   "verb": {
-    "related": {
-      "list": [
-        "even",
-        "is-even",
-        "is-odd",
-        "is-primitive",
-        "kind-of",
-        "odd"
-      ]
-    },
     "toc": false,
     "layout": "default",
     "tasks": [
       "readme"
     ],
+    "related": {
+      "list": [
+        "isobject",
+        "is-plain-object",
+        "is-primitive",
+        "kind-of"
+      ]
+    },
     "plugins": [
       "gulp-format-md"
     ],
