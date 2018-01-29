@@ -1,7 +1,7 @@
 {
   "name": "is-number",
   "description": "Returns true if the value is a number. comprehensive tests.",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "homepage": "https://github.com/jonschlinkert/is-number",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
