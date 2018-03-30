@@ -154,6 +154,7 @@ describe('is not a number', function() {
     function() {},
     function() {},
     Infinity,
+    -Infinity,
     Math.sin,
     NaN,
     new Array(''),
