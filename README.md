@@ -12,12 +12,18 @@ Install with [npm](https://www.npmjs.com/):
 $ npm install --save is-number
 ```
 
+## Why is this needed?
+
+This library provides a fast, simple way of checking whether a value is a number, whether defined as a string or number by the user.
+
+It's easy to check for a number in JavaScript, all we need to do is `typeof value === 'number'`. But sometimes that's not enough. For example, `typeof NaN` returns `number`, and there are many use cases where it's possible or necessary for a numerical value to be defined as a string, like in parsers or regex matches where it's not possible for the value to be defined as a number.
+
 ## Usage
 
 To understand some of the rationale behind the decisions made in this library (and to learn about some oddities of number evaluation in JavaScript), [see this gist](https://gist.github.com/jonschlinkert/e30c70c713da325d0e81).
 
 ```js
-var isNumber = require('is-number');
+const isNumber = require('is-number');
 ```
 
 ### true
@@ -25,27 +31,27 @@ var isNumber = require('is-number');
 See the [tests](./test.js) for more examples.
 
 ```js
-isNumber(5e3)      //=> 'true'
-isNumber(0xff)     //=> 'true'
-isNumber(-1.1)     //=> 'true'
-isNumber(0)        //=> 'true'
-isNumber(1)        //=> 'true'
-isNumber(1.1)      //=> 'true'
-isNumber(10)       //=> 'true'
-isNumber(10.10)    //=> 'true'
-isNumber(100)      //=> 'true'
-isNumber('-1.1')   //=> 'true'
-isNumber('0')      //=> 'true'
-isNumber('012')    //=> 'true'
-isNumber('0xff')   //=> 'true'
-isNumber('1')      //=> 'true'
-isNumber('1.1')    //=> 'true'
-isNumber('10')     //=> 'true'
-isNumber('10.10')  //=> 'true'
-isNumber('100')    //=> 'true'
-isNumber('5e3')    //=> 'true'
-isNumber(parseInt('012'))   //=> 'true'
-isNumber(parseFloat('012')) //=> 'true'
+isNumber(5e3);               // true
+isNumber(0xff);              // true
+isNumber(-1.1);              // true
+isNumber(0);                 // true
+isNumber(1);                 // true
+isNumber(1.1);               // true
+isNumber(10);                // true
+isNumber(10.10);             // true
+isNumber(100);               // true
+isNumber('-1.1');            // true
+isNumber('0');               // true
+isNumber('012');             // true
+isNumber('0xff');            // true
+isNumber('1');               // true
+isNumber('1.1');             // true
+isNumber('10');              // true
+isNumber('10.10');           // true
+isNumber('100');             // true
+isNumber('5e3');             // true
+isNumber(parseInt('012'));   // true
+isNumber(parseFloat('012')); // true
 ```
 
 ### False
@@ -53,25 +59,23 @@ isNumber(parseFloat('012')) //=> 'true'
 See the [tests](./test.js) for more examples.
 
 ```js
-isNumber('foo')             //=> 'false'
-isNumber([1])               //=> 'false'
-isNumber([])                //=> 'false'
-isNumber(function () {})    //=> 'false'
-isNumber(Infinity)          //=> 'false'
-isNumber(NaN)               //=> 'false'
-isNumber(new Buffer('abc')) //=> 'false'
-isNumber(null)              //=> 'false'
-isNumber(undefined)         //=> 'false'
-isNumber({abc: 'abc'})      //=> 'false'
+isNumber('foo');             // false
+isNumber([1]);               // false
+isNumber([]);                // false
+isNumber(function () {});    // false
+isNumber(Infinity);          // false
+isNumber(NaN);               // false
+isNumber(new Buffer('abc')); // false
+isNumber(null);              // false
+isNumber(undefined);         // false
+isNumber({abc: 'abc'});      // false
 ```
 
-## Why is this needed?
-
-This library provides a fast, simple way of checking whether a value is a number, whether defined as a string or number by the user.
-
-In JavaScript, can easily test for a number by doing `typeof value === 'number'`. But sometimes that's not enough. For example, `typeof NaN` returns `number`, and there are many use cases where it's possible or necessary for a numerical value to be defined as a string (I personally use this library to check for numbers when parsing a string. Clearly, this is a case where it's not possible for the value to be defined as a number).
-
 ## Release history
+
+### 6.0.0
+
+* optimizations, thanks to @benaadams.
 
 ### 5.0.0
 
@@ -125,17 +129,18 @@ You might also be interested in these projects:
 
 | **Commits** | **Contributor** | 
 | --- | --- |
-| 42 | [jonschlinkert](https://github.com/jonschlinkert) |
+| 47 | [jonschlinkert](https://github.com/jonschlinkert) |
 | 5 | [charlike-old](https://github.com/charlike-old) |
+| 1 | [benaadams](https://github.com/benaadams) |
 | 1 | [realityking](https://github.com/realityking) |
 
 ### Author
 
 **Jon Schlinkert**
 
-* [linkedin/in/jonschlinkert](https://linkedin.com/in/jonschlinkert)
-* [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
+* [LinkedIn Profile](https://linkedin.com/in/jonschlinkert)
+* [GitHub Profile](https://github.com/jonschlinkert)
+* [Twitter Profile](https://twitter.com/jonschlinkert)
 
 ### License
 
@@ -144,4 +149,4 @@ Released under the [MIT License](LICENSE).
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on January 28, 2018._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on March 31, 2018._
