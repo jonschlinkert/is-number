@@ -15,7 +15,6 @@ node_modules
 npm-debug.log
 
 # yarn
-yarn.lock
 yarn-error.log
 
 # misc
@@ -27,4 +26,3 @@ vendor
 temp
 tmp
 TODO.md
-package-lock.json
