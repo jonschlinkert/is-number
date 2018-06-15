@@ -102,7 +102,7 @@ describe('is a number', function() {
 
   fixtures.forEach(function(num, idx) {
     it(JSON.stringify(num) + ' should be a number', function() {
-      assert(isNumber(num), `expected "${String(num)}" to be a number`);
+      assert(isNumber(num), 'expected "' + String(num) + '" to be a number');
     });
   });
 });
@@ -148,7 +148,7 @@ describe('is not a number', function() {
 
   fixtures.forEach(function(num) {
     it(JSON.stringify(num) + ' should not be a number', function() {
-      assert(!isNumber(num), `expected "${String(num)}" to not be a number`);
+      assert(!isNumber(num), 'expected "' + String(num) + '" to not be a number');
     });
   });
 });
