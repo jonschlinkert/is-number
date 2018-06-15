@@ -11,11 +11,12 @@ const cycle = (e, nl) => {
 
 function bench(name) {
   const suite = new Suite()
+    .on('start', () => console.log(`# ${name}`))
     .on('complete', function(e) {
       const fastest = this.filter('fastest').map('name').toString();
       console.log(`fastest is '${fastest}'`);
       console.log();
-    });
+    })
 
   const res = {
     run: suite.run.bind(suite),
@@ -31,14 +32,26 @@ function bench(name) {
   return res;
 }
 
-function run(fn) {
-  fixtures.all.forEach(val => fn(val));
+function run(fn, prop = 'all') {
+  [].concat(fixtures[prop]).forEach(val => fn(val));
 }
 
 bench('all')
-  .add('v7.0', () => run(isNumber70))
+  .add('v6.1', () => run(isNumber61))
   .add('v6.0', () => run(isNumber60))
   .add('parseFloat', () => run(isNumberParseFloat))
+  .run()
+
+bench('string')
+  .add('v6.1', () => run(isNumber61, 'string'))
+  .add('v6.0', () => run(isNumber60, 'string'))
+  .add('parseFloat', () => run(isNumberParseFloat, 'string'))
+  .run()
+
+bench('number')
+  .add('v6.1', () => run(isNumber61, 'number'))
+  .add('v6.0', () => run(isNumber60, 'number'))
+  .add('parseFloat', () => run(isNumberParseFloat, 'number'))
   .run()
 
 function isNumberParseFloat(n) {
@@ -67,7 +80,7 @@ function isNumber60(val) {
   return false;
 }
 
-function isNumber70(val) {
+function isNumber61(val) {
   if (typeof num === 'number') {
     return num - num === 0;
   }

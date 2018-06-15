@@ -25,7 +25,7 @@ describe('is a number', function() {
     1,
     1.1,
     10,
-    10.10,
+    10.1,
     100,
     -100,
 
@@ -92,23 +92,17 @@ describe('is a number', function() {
     +37,
     +5,
     +[],
-    +Boolean(true),
     +false,
     +Math.LN2,
-    +String(100),
     +true,
     +null,
-    +Number(1),
-    +new Array(''),
-    +new Array(0),
-    +new Boolean(true),
-    +new Buffer(''),
-    +new Date,
+    +Buffer.from(''),
     +new Date()
   ];
+
   fixtures.forEach(function(num, idx) {
     it(JSON.stringify(num) + ' should be a number', function() {
-      assert.equal(isNumber(num), true);
+      assert(isNumber(num), `expected "${String(num)}" to be a number`);
     });
   });
 });
@@ -117,6 +111,7 @@ describe('is not a number', function() {
   var fixtures = [
     '   ', // issue#3
     '\r\n\t', // issue#3
+    '',
     '',
     '3a',
     'abc',
@@ -127,56 +122,33 @@ describe('is not a number', function() {
     +'abc',
     +/foo/,
     +[1, 2, 4],
-    +function() {},
-    +function() {},
-    +function() {},
     +Infinity,
     +Math.sin,
     +NaN,
-    +new Array('abc'),
-    +new Array(2),
-    +new RegExp('foo'),
-    +new String("abc"),
-    +String('foo'),
     +undefined,
-    +{a:1},
+    +{ a: 1 },
     +{},
-    // Symbol('foo'),
-    // Symbol(),
-    // Symbol.iterator,
     /foo/,
     [1, 2, 3],
     [1],
     [],
-    Boolean(true),
+    true,
     false,
-    function() {},
-    function() {},
+    +function() {},
     function() {},
     Infinity,
     -Infinity,
     Math.sin,
     NaN,
-    new Array(''),
-    new Array('abc'),
-    new Array(0),
-    new Boolean(true),
-    new Buffer(''),
-    new Buffer('abc'),
     new Date(),
-    new RegExp('foo'),
-    new String("abc"),
     null,
-    String("abc"),
-    true,
     undefined,
-    {a:1},
-    {abc: 'abc'},
-    {},
+    {}
   ];
-fixtures.forEach(function(num) {
+
+  fixtures.forEach(function(num) {
     it(JSON.stringify(num) + ' should not be a number', function() {
-      assert.equal(isNumber(num), false);
+      assert(!isNumber(num), `expected "${String(num)}" to not be a number`);
     });
   });
 });
