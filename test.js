@@ -96,7 +96,6 @@ describe('is a number', function() {
     +Math.LN2,
     +true,
     +null,
-    +Buffer.from(''),
     +new Date()
   ];
 

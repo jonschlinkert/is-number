@@ -1,7 +1,7 @@
 {
   "name": "is-number",
   "description": "Returns true if a number or string value is a finite number. Useful for regex matches, parsing, user input, etc.",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "homepage": "https://github.com/jonschlinkert/is-number",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
