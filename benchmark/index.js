@@ -37,18 +37,21 @@ function run(fn, prop = 'all') {
 }
 
 bench('all')
+  .add('v6.2', () => run(isNumber62))
   .add('v6.1', () => run(isNumber61))
   .add('v6.0', () => run(isNumber60))
   .add('parseFloat', () => run(isNumberParseFloat))
   .run()
 
 bench('string')
+  .add('v6.2', () => run(isNumber62, 'string'))
   .add('v6.1', () => run(isNumber61, 'string'))
   .add('v6.0', () => run(isNumber60, 'string'))
   .add('parseFloat', () => run(isNumberParseFloat, 'string'))
   .run()
 
 bench('number')
+  .add('v6.2', () => run(isNumber62, 'number'))
   .add('v6.1', () => run(isNumber61, 'number'))
   .add('v6.0', () => run(isNumber60, 'number'))
   .add('parseFloat', () => run(isNumberParseFloat, 'number'))
@@ -90,3 +93,13 @@ function isNumber61(val) {
   return false;
 }
 
+function isNumber62(val) {
+  var type = typeof num;
+  if (type === 'number') {
+    return num - num === 0;
+  }
+  if (type === 'string' && num.trim() !== '') {
+    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+  }
+  return false;
+}
