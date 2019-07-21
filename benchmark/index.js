@@ -37,20 +37,20 @@ function run(fn, prop = 'all') {
 }
 
 bench('all')
+  .add('v6.2', () => run(isNumber62))
   .add('v6.1', () => run(isNumber61))
-  .add('v6.0', () => run(isNumber60))
   .add('parseFloat', () => run(isNumberParseFloat))
   .run()
 
 bench('string')
+  .add('v6.2', () => run(isNumber62, 'string'))
   .add('v6.1', () => run(isNumber61, 'string'))
-  .add('v6.0', () => run(isNumber60, 'string'))
   .add('parseFloat', () => run(isNumberParseFloat, 'string'))
   .run()
 
 bench('number')
+  .add('v6.2', () => run(isNumber62, 'number'))
   .add('v6.1', () => run(isNumber61, 'number'))
-  .add('v6.0', () => run(isNumber60, 'number'))
   .add('parseFloat', () => run(isNumberParseFloat, 'number'))
   .run()
 
@@ -64,24 +64,18 @@ function isNumberParseFloat(n) {
   return false;
 }
 
-function isNumber60(val) {
-  let number = +val;
-  // Discard Infinity and NaN
-  if ((number - number) !== 0) return false;
-  if (number === val) return true;
-  if (typeof val === 'string') {
-    // whitespace and empty strings are coerced to 0
-    // If number is 0, trim the string to see if its empty.
-    if (number === 0 && val.trim() === '') {
-      return false;
-    }
-    return true;
+function isNumber61(val) {
+  if (typeof num === 'number') {
+    return num - num === 0;
+  }
+  if (typeof num === 'string' && num.trim() !== '') {
+    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
   }
   return false;
 }
 
-function isNumber61(val) {
-  if (typeof num === 'number') {
+function isNumber62(val) {
+  if (typeof num === 'number' || num instanceof Number) {
     return num - num === 0;
   }
   if (typeof num === 'string' && num.trim() !== '') {

@@ -79,6 +79,11 @@ describe('is a number', function() {
     Number.MAX_VALUE,
     Number.MIN_VALUE,
 
+    new Number(),
+    new Number(5),
+    new Number('-.5'),
+    new Number('5e3'),
+
     '0.0',
     '0x0',
     '0e+5',
@@ -142,6 +147,8 @@ describe('is not a number', function() {
     new Date(),
     null,
     undefined,
+    new Number(NaN),
+    new Number('a'),
     {}
   ];
 

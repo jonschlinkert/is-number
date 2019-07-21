@@ -8,7 +8,7 @@
 'use strict';
 
 module.exports = function(num) {
-  if (typeof num === 'number') {
+  if (typeof num === 'number' || num instanceof Number) {
     return num - num === 0;
   }
   if (typeof num === 'string' && num.trim() !== '') {
