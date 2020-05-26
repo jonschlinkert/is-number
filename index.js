@@ -12,7 +12,7 @@ module.exports = function(num) {
     return num - num === 0;
   }
   if (typeof num === 'string' && num.trim() !== '') {
-    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+    return Number.isFinite(+num) | isFinite(+num);
   }
   return false;
 };
