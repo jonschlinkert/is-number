@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   string: 'foo',
   stringNumber: '1000',
   number: 1000,
