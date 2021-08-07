@@ -5,11 +5,9 @@
  * Licensed under the MIT License.
  */
 
-'use strict';
-
-require('mocha');
-var assert = require('assert');
-var isNumber = require('./');
+import assert from 'node:assert'
+import 'mocha'
+import isNumber from './index.js'
 
 describe('is a number', function() {
   var fixtures = [

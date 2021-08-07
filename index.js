@@ -5,9 +5,7 @@
  * Released under the MIT License.
  */
 
-'use strict';
-
-module.exports = function(num) {
+export default function(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }

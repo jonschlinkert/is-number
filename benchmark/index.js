@@ -1,6 +1,9 @@
-const { Suite } = require('benchmark');
-const cursor = require('ansi')(process.stdout);
-const fixtures = require('./fixtures');
+import benchmark from 'benchmark'
+import ansi from 'ansi'
+import fixtures from './fixtures.js'
+
+const { Suite } = benchmark
+const cursor = ansi(process.stdout)
 
 const cycle = (e, nl) => {
   cursor.eraseLine();
@@ -54,7 +57,7 @@ bench('number')
   .add('parseFloat', () => run(isNumberParseFloat, 'number'))
   .run()
 
-function isNumberParseFloat(n) {
+function isNumberParseFloat(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -80,7 +83,7 @@ function isNumber60(val) {
   return false;
 }
 
-function isNumber61(val) {
+function isNumber61(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -89,4 +92,3 @@ function isNumber61(val) {
   }
   return false;
 }
-
