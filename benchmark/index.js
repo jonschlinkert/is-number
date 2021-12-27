@@ -54,7 +54,7 @@ bench('number')
   .add('parseFloat', () => run(isNumberParseFloat, 'number'))
   .run()
 
-function isNumberParseFloat(n) {
+function isNumberParseFloat(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -80,7 +80,7 @@ function isNumber60(val) {
   return false;
 }
 
-function isNumber61(val) {
+function isNumber61(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
