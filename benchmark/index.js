@@ -38,7 +38,7 @@ function run(fn, prop = 'all') {
 }
 
 const versions = {
-  '7.0.0': function() {
+  '7.0.0': function(num) {
     if (typeof num === 'number') {
       return num - num === 0;
     }
@@ -48,7 +48,7 @@ const versions = {
     return false;
   },
   next,
-  isNumberParseFloat: function() {
+  isNumberParseFloat: function(num) {
     if (typeof num === 'number') {
       return num - num === 0;
     }
@@ -61,8 +61,8 @@ const versions = {
 
 function benchIt(name, fixture = 'all') {
   const test = bench(name)
-  Object.keys(versions).forEach(
-    version => test.add(version, () => run(versions[version], name, fixture))
+  Object.entries(versions).forEach(
+    ([ name, fn ]) => test.add(name, () => run(fn, name, fixture))
   )
   test.run()
 }
