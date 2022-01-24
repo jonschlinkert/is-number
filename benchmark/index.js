@@ -59,14 +59,14 @@ const versions = {
   }
 }
 
-function benchIt(name, fixture = 'all') {
-  const test = bench(name)
+function runBench(subject) {
+  const test = bench(subject || 'all')
   Object.entries(versions).forEach(
-    ([ name, fn ]) => test.add(name, () => run(fn, name, fixture))
+    ([ name, fn ]) => test.add(name, () => run(fn, subject))
   )
   test.run()
 }
 
-benchIt('all')
-benchIt('string', 'string')
-benchIt('number', 'number')
+runBench()
+runBench('string')
+runBench('number')
