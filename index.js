@@ -7,12 +7,17 @@
 
 'use strict';
 
+const finite = Number.isFinite ? Number.isFinite : isFinite
+
 module.exports = function(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
   if (typeof num === 'string' && num.trim() !== '') {
-    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+    return finite(+num);
+  }
+  if (typeof num === 'bigint') {
+    return finite(Number(num))
   }
   return false;
 };
