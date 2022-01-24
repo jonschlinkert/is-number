@@ -10,6 +10,13 @@
 require('mocha');
 var assert = require('assert');
 var isNumber = require('./');
+function stringify(target, ...rest) {
+  try {
+    return JSON.stringify(target, ...rest)
+  } catch (error) {
+    return `"${target}"`
+  }
+}
 
 describe('is a number', function() {
   var fixtures = [
@@ -96,11 +103,13 @@ describe('is a number', function() {
     +Math.LN2,
     +true,
     +null,
-    +new Date()
+    +new Date(),
+    BigInt(10),
+    10n
   ];
 
   fixtures.forEach(function(num, idx) {
-    it(JSON.stringify(num) + ' should be a number', function() {
+    it(stringify(num) + ' should be a number', function() {
       assert(isNumber(num), 'expected "' + String(num) + '" to be a number');
     });
   });
@@ -142,11 +151,12 @@ describe('is not a number', function() {
     new Date(),
     null,
     undefined,
-    {}
+    {},
+    BigInt(Number.MAX_VALUE) ** 2n
   ];
 
   fixtures.forEach(function(num) {
-    it(JSON.stringify(num) + ' should not be a number', function() {
+    it(stringify(num) + ' should not be a number', function() {
       assert(!isNumber(num), 'expected "' + String(num) + '" to not be a number');
     });
   });
