@@ -43,7 +43,7 @@ const versions = {
       return num - num === 0;
     }
     if (typeof num === 'string' && num.trim() !== '') {
-      return finite(+num);
+      return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
     }
     return false;
   },
