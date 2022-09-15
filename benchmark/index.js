@@ -12,7 +12,7 @@ const cycle = (e, nl) => {
 function bench(name) {
   const suite = new Suite()
     .on('start', () => console.log(`# ${name}`))
-    .on('complete', function(e) {
+    .on('complete', function (e) {
       const fastest = this.filter('fastest').map('name').toString();
       console.log(`fastest is '${fastest}'`);
       console.log();
@@ -37,6 +37,7 @@ function run(fn, prop = 'all') {
 }
 
 bench('all')
+  .add('v6.3', () => run(isNumber63))
   .add('v6.2', () => run(isNumber62))
   .add('v6.1', () => run(isNumber61))
   .add('v6.0', () => run(isNumber60))
@@ -44,6 +45,7 @@ bench('all')
   .run()
 
 bench('string')
+  .add('v6.3', () => run(isNumber63, 'string'))
   .add('v6.2', () => run(isNumber62, 'string'))
   .add('v6.1', () => run(isNumber61, 'string'))
   .add('v6.0', () => run(isNumber60, 'string'))
@@ -51,13 +53,14 @@ bench('string')
   .run()
 
 bench('number')
+  .add('v6.3', () => run(isNumber63, 'number'))
   .add('v6.2', () => run(isNumber62, 'number'))
   .add('v6.1', () => run(isNumber61, 'number'))
   .add('v6.0', () => run(isNumber60, 'number'))
   .add('parseFloat', () => run(isNumberParseFloat, 'number'))
   .run()
 
-function isNumberParseFloat(n) {
+function isNumberParseFloat(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -83,7 +86,7 @@ function isNumber60(val) {
   return false;
 }
 
-function isNumber61(val) {
+function isNumber61(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -93,7 +96,7 @@ function isNumber61(val) {
   return false;
 }
 
-function isNumber62(val) {
+function isNumber62(num) {
   var type = typeof num;
   if (type === 'number') {
     return num - num === 0;
@@ -102,4 +105,17 @@ function isNumber62(val) {
     return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
   }
   return false;
+}
+
+function isNumber63(num) {
+  switch (typeof num) {
+    case 'number':
+      return num - num === 0;
+    case 'string':
+      if (num.trim() !== '')
+        return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+      return false;
+    default:
+      return false;
+  }
 }
