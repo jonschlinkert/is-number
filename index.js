@@ -7,13 +7,15 @@
 
 'use strict';
 
-module.exports = function(num) {
-  var type = typeof num;
-  if (type === 'number') {
-    return num - num === 0;
+module.exports = function (num) {
+  switch (typeof num) {
+    case 'number':
+      return num - num === 0;
+    case 'string':
+      if (num.trim() !== '')
+        return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
+      return false;
+    default:
+      return false;
   }
-  if (type === 'string' && num.trim() !== '') {
-    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);
-  }
-  return false;
 };
